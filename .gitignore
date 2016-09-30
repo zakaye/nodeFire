@@ -1,8 +1,5 @@
 .DS_Store
 node_modules
 *.log
-
 .firebaserc
-
 index/firebase-service-account.json
-public/config.js

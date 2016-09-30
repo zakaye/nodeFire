@@ -18,7 +18,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth, $ht
         method: 'GET',
         url: '/secretData',
         headers: {
-          id_token: firebaseUser.kd
+          id_token: firebaseUser._lat
         }
       }).then(function(response){
         $scope.secretData = response.data;

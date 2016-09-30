@@ -20,9 +20,9 @@
   </head>
   <body ng-controller="SampleCtrl">
     <h1>Hi! Log in to get some secret data from the server!</h1>
-    <button type="button" name="button" ng-click="logIn()">Log In</button>
-    <button type="button" name="button" ng-click="logOut()">Log Out</button>
-    <div class="">
+    <button ng-click="logIn()">Log In</button>
+    <button ng-click="logOut()">Log Out</button>
+    <div>
       {{secretData}}
     </div>
   </body>

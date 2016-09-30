@@ -4,11 +4,12 @@ app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth, $ht
 
   console.log(auth);
 
+  $scope.secretData = "Log in to get some secret data."
+
   $scope.logIn = function login(){
     auth.$signInWithPopup("google").then(function(firebaseUser) {
       console.log("Signed in as:", firebaseUser.user.displayName);
       firebaseUser.user.getToken(/* forceRefresh */ true).then(function(idToken) {
-        console.log('token is: ', idToken);
         // Send token to your backend
         $http({
           method: 'GET',
@@ -17,11 +18,11 @@ app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth, $ht
             id_token: idToken
           }
         }).then(function(response){
-          console.log(response.data);
+          $scope.secretData = response.data;
         });
       }).catch(function(error) {
         // Handle error
-        console.log(error);
+        $scope.secretData = error;
       });
     }).catch(function(error) {
       console.log("Authentication failed: ", error);
@@ -49,15 +50,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth, $ht
     auth.$signOut(function(){
       console.log('Logged out!');
     })
+    $scope.secretData = "Log in to get some secret data."
   };
-
-  $scope.printToken = function(){
-    auth.currentUser.getToken(/* forceRefresh */ true).then(function(idToken) {
-      console.log(idToken);
-    }).catch(function(error) {
-      // Handle error
-      console.log(error);
-    });
-  }
 
 });

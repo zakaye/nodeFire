@@ -9,12 +9,12 @@ app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth, $ht
       console.log("Signed in as:", firebaseUser.user.displayName);
       firebaseUser.user.getToken(/* forceRefresh */ true).then(function(idToken) {
         console.log('token is: ', idToken);
-        // Send token to your backend via HTTPS
+        // Send token to your backend
         $http({
-          method: 'POST',
+          method: 'GET',
           url: '/secretData',
-          data: {
-            idToken: idToken
+          headers: {
+            id_token: idToken
           }
         }).then(function(response){
           console.log(response.data);
@@ -24,10 +24,8 @@ app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth, $ht
         console.log(error);
       });
     }).catch(function(error) {
-      console.log("Authentication failed:", error);
+      console.log("Authentication failed: ", error);
     });
-
-
   };
 
   auth.$onAuthStateChanged(function(){

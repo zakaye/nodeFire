@@ -24,7 +24,7 @@ app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth, $ht
         $scope.secretData = response.data;
       });
     }else{
-      console.log('Not logged in yet.');
+      console.log('Not logged in.');
       $scope.secretData = "Log in to get some secret data."
     }
 

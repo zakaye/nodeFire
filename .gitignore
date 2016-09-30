@@ -1,5 +1,8 @@
-fireNode-ebd067660d34.json
 .DS_Store
 node_modules
 *.log
+
 .firebaserc
+
+index/firebase-service-account.json
+public/config.js

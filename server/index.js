@@ -9,7 +9,7 @@ var port = process.env.PORT || 5000;
 app.set("port", port);
 
 firebase.initializeApp({
-  serviceAccount: "./fireNode-ebd067660d34.json",
+  serviceAccount: "./server/firebase-service-account.json",
   databaseURL:"https://firenode-155ef.firebaseio.com/"
 });
 
@@ -38,7 +38,7 @@ app.get("/secretData", function(req, res){
 // Public folder file routing
 app.get("/*", function(req,res){
   var file = req.params[0] || "/index.html";
-  res.sendFile(path.join(__dirname,"./public/", file));
+  res.sendFile(path.join(__dirname,"../public/", file));
 });
 
 app.listen(app.get("port"), function(){

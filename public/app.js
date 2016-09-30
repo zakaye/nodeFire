@@ -2,55 +2,37 @@ var app = angular.module("sampleApp", ["firebase"]);
 app.controller("SampleCtrl", function($scope, $firebaseArray, $firebaseAuth, $http) {
   var auth = $firebaseAuth();
 
-  console.log(auth);
-
-  $scope.secretData = "Log in to get some secret data."
-
   $scope.logIn = function login(){
     auth.$signInWithPopup("google").then(function(firebaseUser) {
       console.log("Signed in as:", firebaseUser.user.displayName);
-      firebaseUser.user.getToken(/* forceRefresh */ true).then(function(idToken) {
-        // Send token to your backend
-        $http({
-          method: 'GET',
-          url: '/secretData',
-          headers: {
-            id_token: idToken
-          }
-        }).then(function(response){
-          $scope.secretData = response.data;
-        });
-      }).catch(function(error) {
-        // Handle error
-        $scope.secretData = error;
-      });
     }).catch(function(error) {
       console.log("Authentication failed: ", error);
     });
   };
 
-  auth.$onAuthStateChanged(function(){
-    var ref = firebase.database().ref().child("messages");
-    // create a synchronized array
-    $scope.messages = $firebaseArray(ref);
-    // add new items to the array
-    // the message is automatically added to our Firebase database!
-    $scope.addMessage = function() {
-      $scope.messages.$add({
-        text: $scope.newMessageText
+  auth.$onAuthStateChanged(function(firebaseUser){
+    // firebaseUser will be null if not logged in
+    if(firebaseUser) {
+      // This is where we make our call to our server
+      $http({
+        method: 'GET',
+        url: '/secretData',
+        headers: {
+          id_token: firebaseUser.kd
+        }
+      }).then(function(response){
+        $scope.secretData = response.data;
       });
-    };
-    // click on `index.html` above to see $remove() and $save() in action
-
-    // can we get back to our server?
+    }else{
+      console.log('Not logged in yet.');
+      $scope.secretData = "Log in to get some secret data."
+    }
 
   });
 
   $scope.logOut = function(){
-    auth.$signOut(function(){
-      console.log('Logged out!');
-    })
-    $scope.secretData = "Log in to get some secret data."
+    auth.$signOut().then(function(){
+      console.log('Logging the user out!');
+    });
   };
-
 });

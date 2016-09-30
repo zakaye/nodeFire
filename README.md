@@ -10,7 +10,8 @@ $ npm install
 ```
 * Create a free Firebase account at https://firebase.google.com
 * Create a project from your Firebase account console
-* Copy your "Add Firebase to you Web App" config to `public/config.js`. It should look like:
+* Click the “Add Firebase to your web app” icon
+  * Copy the contents from the resulting popup into `public/config.js`. It should look like:
 ```javascript
   // Initialize Firebase
   var config = {

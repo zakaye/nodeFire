@@ -23,7 +23,8 @@ $ npm install
   };
   firebase.initializeApp(config);
 ```
-* Add firebase to your app by adding a service account https://firebase.google.com/docs/server/setup#add_firebase_to_your_app
+* Follow the instructions at this link to add firebase service account to your backend https://firebase.google.com/docs/server/setup#add_firebase_to_your_app
   * Rename the new json file to `firebase-service-account.json` and save it in the `server` folder
-* Configure google as an authentication provider for your Firebase project
-* run `npm start` to run your application
+* Configure google as an authentication provider for your Firebase project:
+  * Firebase Console for Project -> Click Auth in Left Panel -> Click Set Up Sign-In Method Button -> Toggle Google
+* Run `npm start` to run your application

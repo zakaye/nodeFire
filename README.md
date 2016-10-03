@@ -46,4 +46,6 @@ $ npm install
 + Enable Google
 
 ![Alt text](/imgs/enable.jpg?raw=true "Optional Title")
+
 7. Run `npm start` to run your application on `localhost:5000`
+

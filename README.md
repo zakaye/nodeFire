@@ -33,13 +33,13 @@ $ npm install
 ![Alt text](/imgs/guide1.jpg?raw=true "Optional Title")
   * Rename the new JSON file to `firebase-service-account.json` and save it in the `server` folder of your application
 6. Configure Google as an authentication provider for your Firebase project.
-  a. In the Firebase console for your project, click "Auth" in left panel
+a. In the Firebase console for your project, click "Auth" in left panel
 ![Alt text](/imgs/auth.jpg?raw=true "Optional Title")
-  b. Click "Set Up Sign-In Method" button
+b. Click "Set Up Sign-In Method" button
 ![Alt text](/imgs/signin.jpg?raw=true "Optional Title")
-  c. Select "Google"
+c. Select "Google"
 ![Alt text](/imgs/google.jpg?raw=true "Optional Title")
-  d. Click the "edit" icon
-  e. Enable Google
+d. Click the "edit" icon
+e. Enable Google
 ![Alt text](/imgs/enable.jpg?raw=true "Optional Title")
 7. Run `npm start` to run your application on `localhost:5000`
